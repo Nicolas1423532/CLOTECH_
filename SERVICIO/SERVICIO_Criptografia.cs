@@ -9,7 +9,7 @@ namespace SERVICIO
 {
     public class SERVICIO_Criptografia
     {
-        public static string HashSHA256(string textoPlano)
+        public static string Encriptar(string textoPlano)
         {
             using (SHA256 sha256 = SHA256.Create())
             {
