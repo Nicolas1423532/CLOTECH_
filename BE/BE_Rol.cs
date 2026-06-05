@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    internal class BE_PermisoCompuesto
+    internal abstract class BE_Rol
     {
     }
 }

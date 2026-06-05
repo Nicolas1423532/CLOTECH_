@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class BE_Perfil
+    internal class BE_Patente
     {
-        public BE_Perfil() { }
     }
 }
