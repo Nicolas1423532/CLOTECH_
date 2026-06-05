@@ -17,7 +17,6 @@ namespace BE
         string contraseña;
         string rol;
         bool activo;
-        BE_Perfil perfil;
         public string Id_usuario { get => id_usuario; set => id_usuario = value; }
         public string Nombre { get => nombre; set => nombre = value; }
         public string Apellido { get => apellido; set => apellido = value; }
@@ -27,7 +26,6 @@ namespace BE
         public string Contraseña { get => contraseña; set => contraseña = value; }
         public string Rol { get => rol; set => rol = value; }
         public bool Activo { get => activo; set => activo = value; }
-        public BE_Perfil Perfil { get => perfil; set => perfil = value; }
         public BE_Usuario() { }
         public BE_Usuario(string idUsuario, string _nombre, string _apellido, int _dni, int _edad, string _email, string _contraseña, string _rol, bool _activo)
         {
