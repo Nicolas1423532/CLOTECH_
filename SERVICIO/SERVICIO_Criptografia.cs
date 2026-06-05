@@ -11,8 +11,6 @@ namespace SERVICIO
     {
         public static string HashSHA256(string textoPlano)
         {
-            if (string.IsNullOrEmpty(textoPlano)) { throw new Exception("El texto a cifrar no puede ser nulo o vacío."); }
-
             using (SHA256 sha256 = SHA256.Create())
             {
                 byte[] textoPlanoBytes = Encoding.UTF8.GetBytes(textoPlano);

@@ -42,6 +42,7 @@ namespace BLL
         public bool Log_In(string email, string contraseña)
         {
             bool resultado = false;
+            if (string.IsNullOrEmpty(contraseña)) { throw new Exception("El texto a cifrar no puede ser nulo o vacío."); }
             BE_Usuario usuario = ormUsuario.ObtenerUsuarioPorEmail(email);
             string contraseñaEncriptada = SERVICIO_Criptografia.HashSHA256(contraseña);
             if(usuario.Contraseña == contraseñaEncriptada)

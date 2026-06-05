@@ -12,12 +12,19 @@ namespace Vista
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (bllUsuario.Log_In(textBox1.Text, textBox2.Text))
+            try
             {
-                MessageBox.Show("Inicio de sesión exitoso");
-                Menu_Principal menuP = new Menu_Principal();
-                menuP.Show();
-                this.Hide();
+                if (bllUsuario.Log_In(textBox1.Text, textBox2.Text))
+                {
+                    MessageBox.Show("Inicio de sesión exitoso");
+                    Menu_Principal menuP = new Menu_Principal();
+                    menuP.Show();
+                    this.Hide();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
             
         }
