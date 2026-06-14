@@ -307,17 +307,17 @@ namespace Vista
 
         private void skyButton4_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void skyButton3_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void skyButton2_Click(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            
         }
 
         #endregion

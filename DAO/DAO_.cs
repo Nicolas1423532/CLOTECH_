@@ -13,15 +13,15 @@ namespace DAO
     {
         SqlConnection conexion;
         DataSet ds;
-        DataTable? dtUsuario, dtProducto, dtCliente, dtProveedor, dtFactura, dtDetalle, dtDevolucion, dtDevolucionDetalle, dtOrdenCompra, dtOrdenCompraDetalle, dtPerfil, dtPermiso, dtPermisoSimple, dtPermisoCompuesto;
+        DataTable dtUsuario, dtProducto, dtCliente, dtProveedor, dtFactura, dtDetalle, dtDevolucion, dtDevolucionDetalle, dtOrdenCompra, dtOrdenCompraDetalle, dtRol, dtFamilia, dtPatente, dtRolXFamilia,dtFamiliaXFamilia,dtRolXPatente,dtPatenteXFamilia;
         public DataTable DtUsuario { get => dtUsuario; set => dtUsuario = value; }
         public DataTable DtProducto { get => dtProducto; set => dtProducto = value; }
         public DataTable DtCliente { get => dtCliente; set => dtCliente = value; }
         public DataTable DtProveedor { get => dtProveedor; set => dtProveedor = value; }
         public DataTable DtFactura { get => dtFactura; set => dtFactura = value; }
         public DataTable DtDetalle { get => dtDetalle; set => dtDetalle = value; }
-        SqlDataAdapter? adapUsuario, adapProducto, adapCliente, adapProveedor, adapFactura, adapDetalle, adapDevolucion, adapDevolucionDetalle, adapOrdenCompra, adapOrdenCompraDetalle, adapPerfil, adapPermiso, adapPermisoSimple, adapPermisoCompuesto;
-        SqlCommandBuilder? cmbUsuario, cmbProducto, cmbCliente, cmbProveedor, cmbFactura, cmbDetalle, cmbDevolucion, cmbDevolucionDetalle, cmbOrdenCompra, cmbOrdenCompraDetalle, cmbPerfil, cmbPermiso, cmbPermisoSimple, cmbPermisoCompuesto;
+        SqlDataAdapter adapUsuario, adapProducto, adapCliente, adapProveedor, adapFactura, adapDetalle, adapDevolucion, adapDevolucionDetalle, adapOrdenCompra, adapOrdenCompraDetalle, adapRol, adapFamilia, adapPatente, adapRolXFamilia, adapFamiliaXFamilia,adapRolXPatente,adapPatenteXFamilia;
+        SqlCommandBuilder? cmbUsuario, cmbProducto, cmbCliente, cmbProveedor, cmbFactura, cmbDetalle, cmbDevolucion, cmbDevolucionDetalle, cmbOrdenCompra, cmbOrdenCompraDetalle, cmbRol, cmbFamilia, cmbPatente, cmbRolXFamilia, cmbRolXPatente, cmbFamiliaXFamilia, cmbPatenteXFamilia;
         static DAO_? instancia;
         private DAO_()
         {
@@ -32,7 +32,14 @@ namespace DAO
             dtProducto = new DataTable("Producto");
             dtFactura = new DataTable("Factura");
             dtDetalle = new DataTable("Detalle");
-            ds.Tables.AddRange(new DataTable[] { dtCliente, dtUsuario, dtProveedor, dtProducto, dtFactura, dtDetalle });
+            dtRol = new DataTable("Rol");
+            dtFamilia = new DataTable("Familia");
+            dtPatente = new DataTable("Patente");
+            dtRolXFamilia = new DataTable("RolXFamilia");
+            dtFamiliaXFamilia = new DataTable("FamiliaXFamilia");
+            dtRolXPatente = new DataTable("RolXPatente");
+            dtPatenteXFamilia = new DataTable("PatenteXFamilia");
+            ds.Tables.AddRange(new DataTable[] { dtCliente, dtUsuario, dtProveedor, dtProducto, dtFactura, dtDetalle,dtRol,dtFamilia,dtPatente,dtRolXFamilia,dtFamiliaXFamilia,dtRolXPatente,dtPatenteXFamilia });
             conexion = new SqlConnection("Data Source=.;Initial Catalog=CLOTECH;Integrated Security=True;Trust Server Certificate=True");
             adapCliente = new SqlDataAdapter("SELECT * FROM Cliente", conexion);
             adapUsuario = new SqlDataAdapter("SELECT * FROM Usuario", conexion);
@@ -40,12 +47,26 @@ namespace DAO
             adapProducto = new SqlDataAdapter("SELECT * FROM Producto", conexion);
             adapFactura = new SqlDataAdapter("SELECT * FROM Factura", conexion);
             adapDetalle = new SqlDataAdapter("SELECT * FROM Detalle", conexion);
+            adapRol = new SqlDataAdapter("SELECT * FROM Rol", conexion);
+            adapFamilia = new SqlDataAdapter("SELECT * FROM Familia", conexion);
+            adapPatente = new SqlDataAdapter("SELECT * FROM Patente", conexion);
+            adapRolXFamilia = new SqlDataAdapter("SELECT * FROM RolXFamilia", conexion);
+            adapFamiliaXFamilia = new SqlDataAdapter("SELECT * FROM FamiliaXFamilia", conexion);
+            adapRolXPatente = new SqlDataAdapter("SELECT * FROM RolXPatente", conexion);
+            adapPatenteXFamilia = new SqlDataAdapter("SELECT * FROM PatenteXFamilia", conexion);
             cmbCliente = new SqlCommandBuilder(adapCliente);
             cmbUsuario = new SqlCommandBuilder(adapUsuario);
             cmbProveedor = new SqlCommandBuilder(adapProveedor);
             cmbProducto = new SqlCommandBuilder(adapProducto);
             cmbFactura = new SqlCommandBuilder(adapFactura);
             cmbDetalle = new SqlCommandBuilder(adapDetalle);
+            cmbRol = new SqlCommandBuilder(adapRol);
+            cmbFamilia = new SqlCommandBuilder(adapFamilia);
+            cmbPatente = new SqlCommandBuilder(adapPatente);
+            cmbRolXFamilia = new SqlCommandBuilder(adapRolXFamilia);
+            cmbFamiliaXFamilia = new SqlCommandBuilder(adapFamiliaXFamilia);
+            cmbRolXPatente = new SqlCommandBuilder(adapRolXPatente);
+            cmbPatenteXFamilia = new SqlCommandBuilder(adapPatenteXFamilia);
             ActualizarTablas();
             dtCliente.PrimaryKey = new DataColumn[] { dtCliente.Columns[0] };
             dtUsuario.PrimaryKey = new DataColumn[] { dtUsuario.Columns[0] };
@@ -53,6 +74,13 @@ namespace DAO
             dtProducto.PrimaryKey = new DataColumn[] { dtProducto.Columns[0] };
             dtFactura.PrimaryKey = new DataColumn[] { dtFactura.Columns[0] };
             dtDetalle.PrimaryKey = new DataColumn[] { dtDetalle.Columns[0] };
+            dtRol.PrimaryKey = new DataColumn[] { dtRol.Columns[0] };
+            dtFamilia.PrimaryKey = new DataColumn[] { dtFamilia.Columns[0] };
+            dtPatente.PrimaryKey = new DataColumn[] { dtPatente.Columns[0] };
+            dtRolXFamilia.PrimaryKey = new DataColumn[] { dtRolXFamilia.Columns[0] };
+            dtFamiliaXFamilia.PrimaryKey = new DataColumn[] { dtFamiliaXFamilia.Columns[0] };
+            dtRolXPatente.PrimaryKey = new DataColumn[] { dtRolXPatente.Columns[0] };
+            dtPatenteXFamilia.PrimaryKey = new DataColumn[] { dtPatenteXFamilia.Columns[0] };
 
         }
         private void ActualizarTablas()
@@ -63,6 +91,13 @@ namespace DAO
             adapProducto.Fill(dtProducto);
             adapFactura.Fill(dtFactura);
             adapDetalle.Fill(dtDetalle);
+            adapRol.Fill(dtRol);
+            adapFamilia.Fill(dtFamilia);
+            adapPatente.Fill(dtPatente);
+            adapRolXFamilia.Fill(dtRolXFamilia);
+            adapFamiliaXFamilia.Fill(dtFamiliaXFamilia);
+            adapRolXPatente.Fill(dtRolXPatente);
+            adapPatenteXFamilia.Fill(dtPatenteXFamilia);
         }
         public void GuardarCambios()
         {
@@ -72,6 +107,13 @@ namespace DAO
             adapProducto.Update(dtProducto);
             adapFactura.Update(dtFactura);
             adapDetalle.Update(dtDetalle);
+            adapRol.Update(dtRol);
+            adapFamilia.Update(dtFamilia);
+            adapPatente.Update(dtPatente);
+            adapRolXFamilia.Update(dtRolXFamilia);
+            adapFamiliaXFamilia.Update(dtFamiliaXFamilia);
+            adapRolXPatente.Update(dtRolXPatente);
+            adapPatenteXFamilia.Update(dtPatenteXFamilia);
         }
         public static DAO_ ObtenerInstancia()
         {
