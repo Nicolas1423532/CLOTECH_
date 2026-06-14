@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    internal class BE_Patente
+    public class BE_Patente : BE_Rol
     {
         string? id_patente;
         string? titulo;
@@ -14,5 +14,10 @@ namespace BE
         public string Id_patente { get => id_patente; set => id_patente = value; }
         public string Titulo { get => titulo; set => titulo = value; }
         public bool Estado { get => estado; set => estado = value; }
+
+        public override List<BE_Rol> RetornarComponentes()
+        {
+            return new List<BE_Rol> { this };
+        }
     }
 }
