@@ -19,5 +19,14 @@ namespace BE
         {
             return new List<BE_Rol> { this };
         }
+        public BE_Patente() { }
+        public BE_Patente(string idPatente, string _titulo, bool _estado)
+        {
+            id_patente = idPatente;
+            titulo = _titulo;
+            estado = _estado;
+        }
+        public BE_Patente(object[] datos) : this(datos[0].ToString(), datos[1].ToString(), Convert.ToBoolean(datos[2]))
+        { }
     }
 }

@@ -16,11 +16,10 @@ namespace BE
         public string Id_familia { get => id_familia; set => id_familia = value; }
         public string Titulo { get => titulo; set => titulo = value; }
         public bool Estado { get => estado; set => estado = value; }
-
-        public void AgregarComponente(BE_Rol componente)
-        {
-            componentes.Add(componente);
-        }
+        //public void AgregarComponente(BE_Rol componente)
+        //{
+        //    componentes.Add(componente);
+        //}
         public override List<BE_Rol> RetornarComponentes()
         {
             componentesAux = new List<BE_Rol>();
@@ -43,5 +42,14 @@ namespace BE
                 }
             }
         }
+        public BE_Familia() { }
+        public BE_Familia(string idFamilia, string _titulo, bool _estado)
+        {
+            id_familia = idFamilia;
+            titulo = _titulo;
+            estado = _estado;
+        }
+        public BE_Familia(object[] datos) : this(datos[0].ToString(), datos[1].ToString(), Convert.ToBoolean(datos[2]))
+        { }
     }
 }

@@ -20,8 +20,12 @@ namespace DAO
         public DataTable DtProveedor { get => dtProveedor; set => dtProveedor = value; }
         public DataTable DtFactura { get => dtFactura; set => dtFactura = value; }
         public DataTable DtDetalle { get => dtDetalle; set => dtDetalle = value; }
+        public DataTable DtRol { get => dtRol; set => dtRol = value; }
+        public DataTable DtFamilia { get => dtFamilia; set => dtFamilia = value; }
+        public DataTable DtPatente { get => dtPatente; set => dtPatente = value; }
         SqlDataAdapter adapUsuario, adapProducto, adapCliente, adapProveedor, adapFactura, adapDetalle, adapDevolucion, adapDevolucionDetalle, adapOrdenCompra, adapOrdenCompraDetalle, adapRol, adapFamilia, adapPatente, adapRolXFamilia, adapFamiliaXFamilia,adapRolXPatente,adapPatenteXFamilia;
         SqlCommandBuilder? cmbUsuario, cmbProducto, cmbCliente, cmbProveedor, cmbFactura, cmbDetalle, cmbDevolucion, cmbDevolucionDetalle, cmbOrdenCompra, cmbOrdenCompraDetalle, cmbRol, cmbFamilia, cmbPatente, cmbRolXFamilia, cmbRolXPatente, cmbFamiliaXFamilia, cmbPatenteXFamilia;
+        DataRelation relRolAFamilia, relFamiliaAlRol, relFamiliaAPatente;
         static DAO_? instancia;
         private DAO_()
         {
@@ -81,6 +85,8 @@ namespace DAO
             dtFamiliaXFamilia.PrimaryKey = new DataColumn[] { dtFamiliaXFamilia.Columns[0] };
             dtRolXPatente.PrimaryKey = new DataColumn[] { dtRolXPatente.Columns[0] };
             dtPatenteXFamilia.PrimaryKey = new DataColumn[] { dtPatenteXFamilia.Columns[0] };
+            ds.Relations.Add("Rol_A_Familia", dtRol.Columns[0], dtRolXFamilia.Columns[1]);
+            ds.Relations.Add("Familia_A_Rol", dtFamilia.Columns[0], dtRolXFamilia.Columns[2]);
 
         }
         private void ActualizarTablas()
