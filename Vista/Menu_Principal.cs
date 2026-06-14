@@ -21,5 +21,10 @@ namespace Vista
         {
 
         }
+
+        private void skyButton1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

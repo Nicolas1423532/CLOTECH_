@@ -44,12 +44,14 @@ namespace BLL
             bool resultado = false;
             if (string.IsNullOrEmpty(contraseña)) { throw new Exception("El texto a cifrar no puede ser nulo o vacío."); }
             BE_Usuario usuario = ormUsuario.ObtenerUsuarioPorEmail(email);
+            if(usuario == null) { throw new Exception("Email incorrecto"); }
             string contraseñaEncriptada = SERVICIO_Criptografia.Encriptar(contraseña);
             if(usuario.Contraseña == contraseñaEncriptada)
             {
                 SERVICIO_SesionUsuario.ObtenerInstancia().UsuarioActual = usuario;
                 resultado = true;
             }
+            else { throw new Exception("Contraseña incorrecta"); }
             return resultado;
         }
     }

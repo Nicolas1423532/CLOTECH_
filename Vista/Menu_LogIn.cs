@@ -4,6 +4,7 @@ namespace Vista
 {
     public partial class Form1 : Form
     {
+        byte intentos = 0;
         BLL_Usuario bllUsuario;
         public Form1()
         {
@@ -25,6 +26,7 @@ namespace Vista
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                intentos++;
             }
             
         }
@@ -32,6 +34,11 @@ namespace Vista
         private void Form1_Load(object sender, EventArgs e)
         {
             bllUsuario = new BLL_Usuario();
+            if (intentos == 3)
+            {
+                MessageBox.Show("Has alcanzado el número máximo de intentos, la cuenta se bloqueara temporalmente");
+                Application.Exit();
+            }
         }
     }
 }

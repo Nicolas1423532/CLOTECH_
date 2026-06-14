@@ -43,14 +43,7 @@ namespace Vista
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string idCliente = Interaction.InputBox("Ingrese el ID del cliente");
-            string nombre = Interaction.InputBox("Ingrese el nombre del cliente");
-            string apellido = Interaction.InputBox("Ingrese el apellido del cliente");
-            int dni = Convert.ToInt32(Interaction.InputBox("Ingrese el DNI del cliente"));
-
-            BE_Cliente cliente = new BE_Cliente(idCliente, nombre, apellido, dni);
-            bllCliente.AgregarCliente(cliente);
-            Mostrar(poisonDataGridView1, bllCliente.ObtenerTodosLosClientes());
+           
         }
     }
 }
