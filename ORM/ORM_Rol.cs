@@ -15,30 +15,79 @@ namespace ORM
         {
             dao = DAO_.ObtenerInstancia();
         }
-            public void AgregarRol(BE_Rol rol)
+        public void AgregarRol(BE_Rol rol)
+        {
+            DataRow fila = dao.DtRol.NewRow();
+            fila.ItemArray = new object[] { rol.Id_rol, rol.Titulo, rol.Estado };
+            dao.DtRol.Rows.Add(fila);
+            dao.GuardarCambios();
+        }
+        public void ModificarRol(BE_Rol rol)
+        {
+            DataRow fila = dao.DtRol.Rows.Find(rol.Id_rol);
+            if (fila != null)
             {
-                DataRow fila = dao.DtRol.NewRow();
-                fila.ItemArray = new object[] { rol.Id_rol, rol.Titulo, rol.Estado };
-                dao.DtRol.Rows.Add(fila);
+                fila.ItemArray = new object[] { fila.Field<string>(0), rol.Titulo, rol.Estado };
                 dao.GuardarCambios();
             }
-            public void ModificarRol(BE.BE_Rol rol)
+        }
+        public BE_Familia ObtenerRolDelUsuario(string rolUsuario)
+        {
+            List<BE_Rol> lstFamilia = new List<BE_Rol>();
+            DataRow filaRol = dao.DtRol.AsEnumerable().FirstOrDefault(fila => fila.Field<string>(1) == rolUsuario);
+            BE_Familia familiaRaiz = null;
+
+            DataRow[] filasRolXFamilia = filaRol.GetChildRows(dao.RelRolAFamilia);
+
+            foreach (DataRow filaRolXFamilia in filasRolXFamilia)
             {
-                DataRow fila = dao.DtRol.Rows.Find(rol.Id_rol);
-                if (fila != null)
+                string idFamilia = filaRolXFamilia.Field<string>(2);
+                DataRow? filaFamilia = dao.DtFamilia.Rows.Find(idFamilia);
+                //bool resultado = familiaRaiz.RetornarComponentes().Any(c=>c.Id_rol == idFamilia);
+                if (filaFamilia != null/* && resultado != true*/)
                 {
-                    fila.ItemArray = new object[] { fila.Field<string>(0), rol.Titulo, rol.Estado };
-                    dao.GuardarCambios();
+                    BE_Familia familia = new BE_Familia(filaFamilia.ItemArray);
+                    ArmarHijosRecursivamente(familia, filaFamilia);
+                    if (familiaRaiz == null)
+                    {
+                        familiaRaiz = familia;
+                    }
+                    else
+                    {
+                        familiaRaiz.AgregarComponente(familia);
+                    }
                 }
             }
-            public List<BE.BE_Rol> ObtenerTodosLosRoles()
-            {
-                List<BE.BE_Rol> lstRoles = new List<BE.BE_Rol>();
-                foreach (DataRow fila in dao.DtRol.Rows)
+            return familiaRaiz;
+        }
+        private void ArmarHijosRecursivamente(BE_Familia padre, DataRow filaFamilia)
+        {
+            DataRow[] filasPatenteXFamilia = filaFamilia.GetChildRows(dao.RelFamiliaAPatente);
+
+                foreach (DataRow filaPatenteXFamilia in filasPatenteXFamilia)
                 {
-                    //lstRoles.Add(BE_Rol(fila.ItemArray));
+                    string idPatente = filaPatenteXFamilia.Field<string>(1);
+
+                    DataRow? filaPatente = dao.DtPatente.Rows.Find(idPatente);
+                    if (filaPatente != null)
+                    {
+                        BE_Patente patente = new BE_Patente(filaPatente.ItemArray);
+                        padre.AgregarComponente(patente);
+                    }
                 }
-                return lstRoles;
+                DataRow[] filasSubFamiliaXFamilia = filaFamilia.GetChildRows(dao.RelFamiliaPadre_A_SubFamilia);
+
+            foreach (DataRow filaSubFamiliaXFamilia in filasSubFamiliaXFamilia)
+            {
+                string idSubFamilia = filaSubFamiliaXFamilia.Field<string>(2);
+                DataRow? filaSubFamilia = dao.DtFamilia.Rows.Find(idSubFamilia);
+                if (filaSubFamilia != null)
+                {
+                    BE_Familia subFamilia = new BE_Familia(filaSubFamilia.ItemArray);
+                    ArmarHijosRecursivamente(subFamilia, filaSubFamilia);
+                    padre.AgregarComponente(subFamilia);
+                }
+            }
         }
     }
 }

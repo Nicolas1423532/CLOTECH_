@@ -1,4 +1,6 @@
+using BE;
 using BLL;
+using SERVICIO;
 
 namespace Vista
 {
@@ -22,23 +24,37 @@ namespace Vista
                     menuP.Show();
                     this.Hide();
                 }
+                else
+                {
+                    intentos++;
+                    bool limite = bllUsuario.LimiteIntentosLogIn(intentos);
+                    DesactivarControles(limite);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                intentos++;
             }
             
         }
-
+        private void DesactivarControles(bool resultado)
+        {
+            if (resultado)
+            {
+                textBox1.Enabled = false;
+                textBox2.Enabled = false;
+                button1.Enabled = false;
+                throw new Exception("Ha alcanzado el numero maximo de intentos. Su cuenta está temporalmente bloqueada");
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             bllUsuario = new BLL_Usuario();
-            if (intentos == 3)
-            {
-                MessageBox.Show("Has alcanzado el número máximo de intentos, la cuenta se bloqueara temporalmente");
-                Application.Exit();
-            }
+            //if (intentos == 3)
+            //{
+            //    MessageBox.Show("Has alcanzado el número máximo de intentos, la cuenta se bloqueara temporalmente");
+            //    Application.Exit();
+            //}
         }
     }
 }

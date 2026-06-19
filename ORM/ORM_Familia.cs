@@ -18,13 +18,13 @@ namespace ORM
         public void AgregarFamilia(BE_Familia familia)
         {
             DataRow fila = dao.DtFamilia.NewRow();
-            fila.ItemArray = new object[] { familia.Id_familia, familia.Titulo, familia.Estado };
+            fila.ItemArray = new object[] { familia.Id_rol, familia.Titulo, familia.Estado };
             dao.DtFamilia.Rows.Add(fila);
             dao.GuardarCambios();
         }
         public void ModificarFamilia(BE_Familia familia)
         {
-            DataRow fila = dao.DtFamilia.Rows.Find(familia.Id_familia);
+            DataRow fila = dao.DtFamilia.Rows.Find(familia.Id_rol);
             if (fila != null)
             {
                 fila.ItemArray = new object[] { fila.Field<string>(0), familia.Titulo, familia.Estado};

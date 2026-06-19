@@ -31,13 +31,14 @@ namespace Vista
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menu_Principal));
             panel1 = new ReaLTaiizor.Controls.Panel();
+            skyButton6 = new ReaLTaiizor.Controls.SkyButton();
+            skyButton5 = new ReaLTaiizor.Controls.SkyButton();
             skyButton4 = new ReaLTaiizor.Controls.SkyButton();
             skyButton3 = new ReaLTaiizor.Controls.SkyButton();
             skyButton2 = new ReaLTaiizor.Controls.SkyButton();
             skyButton1 = new ReaLTaiizor.Controls.SkyButton();
             pictureBox1 = new PictureBox();
-            skyButton5 = new ReaLTaiizor.Controls.SkyButton();
-            skyButton6 = new ReaLTaiizor.Controls.SkyButton();
+            dungeonHeaderLabel1 = new ReaLTaiizor.Controls.DungeonHeaderLabel();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
@@ -60,6 +61,81 @@ namespace Vista
             panel1.TabIndex = 0;
             panel1.Text = "panel1";
             panel1.Click += panel1_Click;
+            // 
+            // skyButton6
+            // 
+            skyButton6.BackColor = Color.WhiteSmoke;
+            skyButton6.DownBGColorA = Color.FromArgb(70, 153, 205);
+            skyButton6.DownBGColorB = Color.FromArgb(53, 124, 170);
+            skyButton6.DownBorderColorA = Color.FromArgb(88, 168, 221);
+            skyButton6.DownBorderColorB = Color.FromArgb(76, 149, 194);
+            skyButton6.DownBorderColorC = Color.FromArgb(38, 93, 131);
+            skyButton6.DownBorderColorD = Color.FromArgb(200, 25, 73, 109);
+            skyButton6.DownForeColor = Color.White;
+            skyButton6.DownShadowForeColor = Color.FromArgb(200, 0, 0, 0);
+            skyButton6.Font = new Font("Segoe UI Black", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            skyButton6.ForeColor = Color.FromArgb(27, 94, 137);
+            skyButton6.HoverBGColorA = Color.FromArgb(70, 153, 205);
+            skyButton6.HoverBGColorB = Color.FromArgb(53, 124, 170);
+            skyButton6.HoverBorderColorA = Color.FromArgb(88, 168, 221);
+            skyButton6.HoverBorderColorB = Color.FromArgb(76, 149, 194);
+            skyButton6.HoverBorderColorC = Color.FromArgb(38, 93, 131);
+            skyButton6.HoverBorderColorD = Color.FromArgb(200, 25, 73, 109);
+            skyButton6.HoverForeColor = Color.White;
+            skyButton6.HoverShadowForeColor = Color.FromArgb(200, 0, 0, 0);
+            skyButton6.Location = new Point(38, 484);
+            skyButton6.Name = "skyButton6";
+            skyButton6.NormalBGColorA = Color.FromArgb(245, 245, 245);
+            skyButton6.NormalBGColorB = Color.FromArgb(230, 230, 230);
+            skyButton6.NormalBorderColorA = Color.FromArgb(252, 252, 252);
+            skyButton6.NormalBorderColorB = Color.FromArgb(249, 249, 249);
+            skyButton6.NormalBorderColorC = Color.WhiteSmoke;
+            skyButton6.NormalBorderColorD = Color.Transparent;
+            skyButton6.NormalForeColor = Color.FromArgb(27, 94, 137);
+            skyButton6.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
+            skyButton6.Size = new Size(172, 55);
+            skyButton6.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            skyButton6.TabIndex = 11;
+            skyButton6.Text = "CERRAR SESIÓN";
+            skyButton6.Click += skyButton6_Click;
+            // 
+            // skyButton5
+            // 
+            skyButton5.BackColor = Color.WhiteSmoke;
+            skyButton5.DownBGColorA = Color.FromArgb(70, 153, 205);
+            skyButton5.DownBGColorB = Color.FromArgb(53, 124, 170);
+            skyButton5.DownBorderColorA = Color.FromArgb(88, 168, 221);
+            skyButton5.DownBorderColorB = Color.FromArgb(76, 149, 194);
+            skyButton5.DownBorderColorC = Color.FromArgb(38, 93, 131);
+            skyButton5.DownBorderColorD = Color.FromArgb(200, 25, 73, 109);
+            skyButton5.DownForeColor = Color.White;
+            skyButton5.DownShadowForeColor = Color.FromArgb(200, 0, 0, 0);
+            skyButton5.Font = new Font("Segoe UI Black", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            skyButton5.ForeColor = Color.FromArgb(27, 94, 137);
+            skyButton5.HoverBGColorA = Color.FromArgb(70, 153, 205);
+            skyButton5.HoverBGColorB = Color.FromArgb(53, 124, 170);
+            skyButton5.HoverBorderColorA = Color.FromArgb(88, 168, 221);
+            skyButton5.HoverBorderColorB = Color.FromArgb(76, 149, 194);
+            skyButton5.HoverBorderColorC = Color.FromArgb(38, 93, 131);
+            skyButton5.HoverBorderColorD = Color.FromArgb(200, 25, 73, 109);
+            skyButton5.HoverForeColor = Color.White;
+            skyButton5.HoverShadowForeColor = Color.FromArgb(200, 0, 0, 0);
+            skyButton5.Location = new Point(38, 408);
+            skyButton5.Name = "skyButton5";
+            skyButton5.NormalBGColorA = Color.FromArgb(245, 245, 245);
+            skyButton5.NormalBGColorB = Color.FromArgb(230, 230, 230);
+            skyButton5.NormalBorderColorA = Color.FromArgb(252, 252, 252);
+            skyButton5.NormalBorderColorB = Color.FromArgb(249, 249, 249);
+            skyButton5.NormalBorderColorC = Color.WhiteSmoke;
+            skyButton5.NormalBorderColorD = Color.Transparent;
+            skyButton5.NormalForeColor = Color.FromArgb(27, 94, 137);
+            skyButton5.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
+            skyButton5.Size = new Size(172, 55);
+            skyButton5.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            skyButton5.TabIndex = 10;
+            skyButton5.Tag = "MODULO_AYUDA";
+            skyButton5.Text = "AYUDA";
+            skyButton5.Click += skyButton5_Click;
             // 
             // skyButton4
             // 
@@ -95,6 +171,7 @@ namespace Vista
             skyButton4.Size = new Size(172, 55);
             skyButton4.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             skyButton4.TabIndex = 9;
+            skyButton4.Tag = "MODULO_DEPOSITO";
             skyButton4.Text = "DEPOSITO";
             skyButton4.Click += skyButton4_Click;
             // 
@@ -132,6 +209,7 @@ namespace Vista
             skyButton3.Size = new Size(172, 55);
             skyButton3.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             skyButton3.TabIndex = 8;
+            skyButton3.Tag = "MODULO_VENTA";
             skyButton3.Text = "VENTA";
             skyButton3.Click += skyButton3_Click;
             // 
@@ -169,6 +247,7 @@ namespace Vista
             skyButton2.Size = new Size(170, 55);
             skyButton2.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             skyButton2.TabIndex = 7;
+            skyButton2.Tag = "MODULO_MAESTRO";
             skyButton2.Text = "MAESTRO";
             skyButton2.Click += skyButton2_Click;
             // 
@@ -206,6 +285,7 @@ namespace Vista
             skyButton1.Size = new Size(170, 55);
             skyButton1.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
             skyButton1.TabIndex = 2;
+            skyButton1.Tag = "MODULO_ADMIN";
             skyButton1.Text = "ADMINISTRACIÓN";
             skyButton1.Click += skyButton1_Click;
             // 
@@ -218,77 +298,17 @@ namespace Vista
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
-            // skyButton5
+            // dungeonHeaderLabel1
             // 
-            skyButton5.BackColor = Color.WhiteSmoke;
-            skyButton5.DownBGColorA = Color.FromArgb(70, 153, 205);
-            skyButton5.DownBGColorB = Color.FromArgb(53, 124, 170);
-            skyButton5.DownBorderColorA = Color.FromArgb(88, 168, 221);
-            skyButton5.DownBorderColorB = Color.FromArgb(76, 149, 194);
-            skyButton5.DownBorderColorC = Color.FromArgb(38, 93, 131);
-            skyButton5.DownBorderColorD = Color.FromArgb(200, 25, 73, 109);
-            skyButton5.DownForeColor = Color.White;
-            skyButton5.DownShadowForeColor = Color.FromArgb(200, 0, 0, 0);
-            skyButton5.Font = new Font("Segoe UI Black", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            skyButton5.ForeColor = Color.FromArgb(27, 94, 137);
-            skyButton5.HoverBGColorA = Color.FromArgb(70, 153, 205);
-            skyButton5.HoverBGColorB = Color.FromArgb(53, 124, 170);
-            skyButton5.HoverBorderColorA = Color.FromArgb(88, 168, 221);
-            skyButton5.HoverBorderColorB = Color.FromArgb(76, 149, 194);
-            skyButton5.HoverBorderColorC = Color.FromArgb(38, 93, 131);
-            skyButton5.HoverBorderColorD = Color.FromArgb(200, 25, 73, 109);
-            skyButton5.HoverForeColor = Color.White;
-            skyButton5.HoverShadowForeColor = Color.FromArgb(200, 0, 0, 0);
-            skyButton5.Location = new Point(38, 408);
-            skyButton5.Name = "skyButton5";
-            skyButton5.NormalBGColorA = Color.FromArgb(245, 245, 245);
-            skyButton5.NormalBGColorB = Color.FromArgb(230, 230, 230);
-            skyButton5.NormalBorderColorA = Color.FromArgb(252, 252, 252);
-            skyButton5.NormalBorderColorB = Color.FromArgb(249, 249, 249);
-            skyButton5.NormalBorderColorC = Color.WhiteSmoke;
-            skyButton5.NormalBorderColorD = Color.Transparent;
-            skyButton5.NormalForeColor = Color.FromArgb(27, 94, 137);
-            skyButton5.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
-            skyButton5.Size = new Size(172, 55);
-            skyButton5.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            skyButton5.TabIndex = 10;
-            skyButton5.Text = "AYUDA";
-            // 
-            // skyButton6
-            // 
-            skyButton6.BackColor = Color.WhiteSmoke;
-            skyButton6.DownBGColorA = Color.FromArgb(70, 153, 205);
-            skyButton6.DownBGColorB = Color.FromArgb(53, 124, 170);
-            skyButton6.DownBorderColorA = Color.FromArgb(88, 168, 221);
-            skyButton6.DownBorderColorB = Color.FromArgb(76, 149, 194);
-            skyButton6.DownBorderColorC = Color.FromArgb(38, 93, 131);
-            skyButton6.DownBorderColorD = Color.FromArgb(200, 25, 73, 109);
-            skyButton6.DownForeColor = Color.White;
-            skyButton6.DownShadowForeColor = Color.FromArgb(200, 0, 0, 0);
-            skyButton6.Font = new Font("Segoe UI Black", 11F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            skyButton6.ForeColor = Color.FromArgb(27, 94, 137);
-            skyButton6.HoverBGColorA = Color.FromArgb(70, 153, 205);
-            skyButton6.HoverBGColorB = Color.FromArgb(53, 124, 170);
-            skyButton6.HoverBorderColorA = Color.FromArgb(88, 168, 221);
-            skyButton6.HoverBorderColorB = Color.FromArgb(76, 149, 194);
-            skyButton6.HoverBorderColorC = Color.FromArgb(38, 93, 131);
-            skyButton6.HoverBorderColorD = Color.FromArgb(200, 25, 73, 109);
-            skyButton6.HoverForeColor = Color.White;
-            skyButton6.HoverShadowForeColor = Color.FromArgb(200, 0, 0, 0);
-            skyButton6.Location = new Point(38, 484);
-            skyButton6.Name = "skyButton6";
-            skyButton6.NormalBGColorA = Color.FromArgb(245, 245, 245);
-            skyButton6.NormalBGColorB = Color.FromArgb(230, 230, 230);
-            skyButton6.NormalBorderColorA = Color.FromArgb(252, 252, 252);
-            skyButton6.NormalBorderColorB = Color.FromArgb(249, 249, 249);
-            skyButton6.NormalBorderColorC = Color.WhiteSmoke;
-            skyButton6.NormalBorderColorD = Color.Transparent;
-            skyButton6.NormalForeColor = Color.FromArgb(27, 94, 137);
-            skyButton6.NormalShadowForeColor = Color.FromArgb(200, 255, 255, 255);
-            skyButton6.Size = new Size(172, 55);
-            skyButton6.SmoothingType = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-            skyButton6.TabIndex = 11;
-            skyButton6.Text = "CERRAR SESIÓN";
+            dungeonHeaderLabel1.AutoSize = true;
+            dungeonHeaderLabel1.BackColor = Color.Transparent;
+            dungeonHeaderLabel1.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
+            dungeonHeaderLabel1.ForeColor = Color.FromArgb(76, 76, 77);
+            dungeonHeaderLabel1.Location = new Point(626, 483);
+            dungeonHeaderLabel1.Name = "dungeonHeaderLabel1";
+            dungeonHeaderLabel1.Size = new Size(205, 25);
+            dungeonHeaderLabel1.TabIndex = 3;
+            dungeonHeaderLabel1.Text = "dungeonHeaderLabel1";
             // 
             // Menu_Principal
             // 
@@ -296,24 +316,18 @@ namespace Vista
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ButtonHighlight;
             ClientSize = new Size(951, 575);
+            Controls.Add(dungeonHeaderLabel1);
             Controls.Add(pictureBox1);
             Controls.Add(panel1);
             Name = "Menu_Principal";
             Text = "Menu_Principal";
+            Load += Menu_Principal_Load;
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
-        private void skyButton4_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void skyButton3_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         private void skyButton2_Click(object sender, EventArgs e)
         {
@@ -330,5 +344,6 @@ namespace Vista
         private ReaLTaiizor.Controls.SkyButton skyButton4;
         private ReaLTaiizor.Controls.SkyButton skyButton5;
         private ReaLTaiizor.Controls.SkyButton skyButton6;
+        private ReaLTaiizor.Controls.DungeonHeaderLabel dungeonHeaderLabel1;
     }
 }

@@ -18,13 +18,13 @@ namespace ORM
         public void AgregarPatente(BE_Patente patente)
         {
             DataRow fila = dao.DtPatente.NewRow();
-            fila.ItemArray = new object[] { patente.Id_patente, patente.Titulo, patente.Estado };
+            fila.ItemArray = new object[] { patente.Id_rol, patente.Titulo, patente.Estado };
             dao.DtPatente.Rows.Add(fila);
             dao.GuardarCambios();
         }
         public void ModificarPatente(BE_Patente patente)
         {
-            DataRow fila = dao.DtPatente.Rows.Find(patente.Id_patente);
+            DataRow fila = dao.DtPatente.Rows.Find(patente.Id_rol);
             if (fila != null)
             {
                 fila.ItemArray = new object[] { fila.Field<string>(0), patente.Titulo, patente.Estado };

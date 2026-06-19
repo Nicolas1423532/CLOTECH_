@@ -11,9 +11,11 @@ namespace BLL
     public class BLL_Usuario
     {
         ORM_Usuario ormUsuario;
+        ORM_Rol ormRol;
         public BLL_Usuario()
         {
             ormUsuario = new ORM_Usuario();
+            ormRol = new ORM_Rol();
         }
         public void AgregarUsuario(BE_Usuario usuario)
         {
@@ -44,14 +46,33 @@ namespace BLL
             bool resultado = false;
             if (string.IsNullOrEmpty(contraseña)) { throw new Exception("El texto a cifrar no puede ser nulo o vacío."); }
             BE_Usuario usuario = ormUsuario.ObtenerUsuarioPorEmail(email);
-            if(usuario == null) { throw new Exception("Email incorrecto"); }
+            if (usuario == null) { resultado = false;/*throw new Exception("Email incorrecto"); */}
             string contraseñaEncriptada = SERVICIO_Criptografia.Encriptar(contraseña);
-            if(usuario.Contraseña == contraseñaEncriptada)
+            if(usuario!= null && usuario.Contraseña == contraseñaEncriptada)
             {
                 SERVICIO_SesionUsuario.ObtenerInstancia().UsuarioActual = usuario;
                 resultado = true;
+                BE_Familia permisosUsuario = ormRol.ObtenerRolDelUsuario(usuario.Rol);
+                if (permisosUsuario != null) { SERVICIO_SesionUsuario.ObtenerInstancia().FamiliaActual = permisosUsuario; }
             }
-            else { throw new Exception("Contraseña incorrecta"); }
+            else { resultado = false;/*throw new Exception("Contraseña incorrecta");*/ }
+            return resultado;
+        }
+        public void Log_Out(bool opcion)
+        {
+            if (opcion)
+            {
+                SERVICIO_SesionUsuario.ObtenerInstancia().UsuarioActual = null;
+                SERVICIO_SesionUsuario.ObtenerInstancia().FamiliaActual = null;
+            }
+        }
+        public bool LimiteIntentosLogIn(int cantidad)
+        {
+            bool resultado = false;
+            if(cantidad >= 3)
+            {
+                resultado = true;
+            }
             return resultado;
         }
     }

@@ -16,7 +16,6 @@ namespace Vista
 {
     public partial class Menu_Venta : Form
     {
-        BLL_Cliente bllCliente;
         public Menu_Venta()
         {
             InitializeComponent();
@@ -24,8 +23,7 @@ namespace Vista
 
         private void Menu_Venta_Load(object sender, EventArgs e)
         {
-            bllCliente = new BLL_Cliente();
-            foreach (var  pD in this.Controls)
+            foreach (var pD in this.Controls)
             {
                 if (pD is ReaLTaiizor.Controls.PoisonDataGridView)
                 {
@@ -33,7 +31,6 @@ namespace Vista
                     (pD as ReaLTaiizor.Controls.PoisonDataGridView).SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 }
             }
-            Mostrar(poisonDataGridView1, bllCliente.ObtenerTodosLosClientes());
         }
         private void Mostrar(PoisonDataGridView pD, object datos)
         {
@@ -41,9 +38,9 @@ namespace Vista
             pD.DataSource = datos;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void aloneTextBox1_TextChanged(object sender, EventArgs e)
         {
-           
+
         }
     }
 }

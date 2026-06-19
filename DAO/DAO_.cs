@@ -23,9 +23,19 @@ namespace DAO
         public DataTable DtRol { get => dtRol; set => dtRol = value; }
         public DataTable DtFamilia { get => dtFamilia; set => dtFamilia = value; }
         public DataTable DtPatente { get => dtPatente; set => dtPatente = value; }
+        public DataTable DtRolXFamilia { get => dtRolXFamilia; set => dtRolXFamilia = value; }
+        public DataTable DtFamiliaXFamilia { get => dtFamiliaXFamilia; set => dtFamiliaXFamilia = value; }
+        public DataTable DtRolXPatente { get => dtRolXPatente; set => dtRolXPatente = value; }
+        public DataTable DtPatenteXFamilia { get => dtPatenteXFamilia; set => dtPatenteXFamilia = value; }
         SqlDataAdapter adapUsuario, adapProducto, adapCliente, adapProveedor, adapFactura, adapDetalle, adapDevolucion, adapDevolucionDetalle, adapOrdenCompra, adapOrdenCompraDetalle, adapRol, adapFamilia, adapPatente, adapRolXFamilia, adapFamiliaXFamilia,adapRolXPatente,adapPatenteXFamilia;
         SqlCommandBuilder? cmbUsuario, cmbProducto, cmbCliente, cmbProveedor, cmbFactura, cmbDetalle, cmbDevolucion, cmbDevolucionDetalle, cmbOrdenCompra, cmbOrdenCompraDetalle, cmbRol, cmbFamilia, cmbPatente, cmbRolXFamilia, cmbRolXPatente, cmbFamiliaXFamilia, cmbPatenteXFamilia;
-        DataRelation relRolAFamilia, relFamiliaAlRol, relFamiliaAPatente;
+        DataRelation relRolAFamilia, relFamiliaAlRol, relFamiliaAPatente,relPatenteAFamilia, relFamiliaPadre_A_SubFamilia, relFamiliaHija_A_FamiliaPadre;
+        public DataRelation RelRolAFamilia { get => relRolAFamilia; set => relRolAFamilia = value; }
+        public DataRelation RelFamiliaAlRol { get => relFamiliaAlRol; set => relFamiliaAlRol = value; }
+        public DataRelation RelFamiliaAPatente { get => relFamiliaAPatente; set => relFamiliaAPatente = value; }
+        public DataRelation RelFamiliaPadre_A_SubFamilia { get => relFamiliaPadre_A_SubFamilia; set => relFamiliaPadre_A_SubFamilia = value; }
+        public DataRelation RelFamiliaHija_A_FamiliaPadre { get => relFamiliaHija_A_FamiliaPadre; set => relFamiliaHija_A_FamiliaPadre = value; }
+        public DataRelation RelPatenteAFamilia { get => relPatenteAFamilia; set=> relPatenteAFamilia = value; }
         static DAO_? instancia;
         private DAO_()
         {
@@ -43,7 +53,7 @@ namespace DAO
             dtFamiliaXFamilia = new DataTable("FamiliaXFamilia");
             dtRolXPatente = new DataTable("RolXPatente");
             dtPatenteXFamilia = new DataTable("PatenteXFamilia");
-            ds.Tables.AddRange(new DataTable[] { dtCliente, dtUsuario, dtProveedor, dtProducto, dtFactura, dtDetalle,dtRol,dtFamilia,dtPatente,dtRolXFamilia,dtFamiliaXFamilia,dtRolXPatente,dtPatenteXFamilia });
+            ds.Tables.AddRange(new DataTable[] { dtCliente, dtUsuario, dtProveedor, dtProducto, dtFactura, dtDetalle, dtRol, dtFamilia, dtPatente, dtRolXFamilia, dtFamiliaXFamilia, dtRolXPatente, dtPatenteXFamilia });
             conexion = new SqlConnection("Data Source=.;Initial Catalog=CLOTECH;Integrated Security=True;Trust Server Certificate=True");
             adapCliente = new SqlDataAdapter("SELECT * FROM Cliente", conexion);
             adapUsuario = new SqlDataAdapter("SELECT * FROM Usuario", conexion);
@@ -85,8 +95,13 @@ namespace DAO
             dtFamiliaXFamilia.PrimaryKey = new DataColumn[] { dtFamiliaXFamilia.Columns[0] };
             dtRolXPatente.PrimaryKey = new DataColumn[] { dtRolXPatente.Columns[0] };
             dtPatenteXFamilia.PrimaryKey = new DataColumn[] { dtPatenteXFamilia.Columns[0] };
-            ds.Relations.Add("Rol_A_Familia", dtRol.Columns[0], dtRolXFamilia.Columns[1]);
-            ds.Relations.Add("Familia_A_Rol", dtFamilia.Columns[0], dtRolXFamilia.Columns[2]);
+            relRolAFamilia = new DataRelation("Rol_A_Familia", dtRol.Columns[0], dtRolXFamilia.Columns[1]);
+            relFamiliaAlRol = new DataRelation("Familia_A_Rol", dtFamilia.Columns[0], dtRolXFamilia.Columns[2]);
+            relFamiliaPadre_A_SubFamilia = new DataRelation("Familia_Padre_A_SubFamilia", dtFamilia.Columns[0], dtFamiliaXFamilia.Columns[1]);
+            relFamiliaHija_A_FamiliaPadre = new DataRelation("Familia_Hija_A_FamiliaPadre", dtFamilia.Columns[0], dtFamiliaXFamilia.Columns[2]);
+            relFamiliaAPatente = new DataRelation("Familia_A_Patente", dtFamilia.Columns[0], dtPatenteXFamilia.Columns[2]);
+            relPatenteAFamilia = new DataRelation("Patente_A_Familia", dtPatente.Columns[0], dtPatenteXFamilia.Columns[1]);
+            ds.Relations.AddRange(new DataRelation[] { relRolAFamilia, relFamiliaAlRol, relFamiliaPadre_A_SubFamilia, relFamiliaHija_A_FamiliaPadre, relFamiliaAPatente, relPatenteAFamilia });
 
         }
         private void ActualizarTablas()
