@@ -112,6 +112,7 @@
             skyButton2.TabIndex = 4;
             skyButton2.Tag = "MODULO_ADMIN";
             skyButton2.Text = "GESTION DE ROL";
+            skyButton2.Click += skyButton2_Click;
             // 
             // skyButton3
             // 

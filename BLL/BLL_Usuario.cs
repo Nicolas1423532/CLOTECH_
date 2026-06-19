@@ -36,7 +36,7 @@ namespace BLL
                         Dni = u.Dni,
                         Edad = u.Edad,
                         Email = u.Email,
-                        Contraseña = u.Contraseña,
+                        //Contraseña = u.Contraseña,
                         Rol = u.Rol,
                         Activo = u.Activo
                     }).ToList<object>();
@@ -46,7 +46,7 @@ namespace BLL
             bool resultado = false;
             if (string.IsNullOrEmpty(contraseña)) { throw new Exception("El texto a cifrar no puede ser nulo o vacío."); }
             BE_Usuario usuario = ormUsuario.ObtenerUsuarioPorEmail(email);
-            if (usuario == null) { resultado = false;/*throw new Exception("Email incorrecto"); */}
+            if (usuario == null) { resultado = false; }
             string contraseñaEncriptada = SERVICIO_Criptografia.Encriptar(contraseña);
             if(usuario!= null && usuario.Contraseña == contraseñaEncriptada)
             {
@@ -55,7 +55,7 @@ namespace BLL
                 BE_Familia permisosUsuario = ormRol.ObtenerRolDelUsuario(usuario.Rol);
                 if (permisosUsuario != null) { SERVICIO_SesionUsuario.ObtenerInstancia().FamiliaActual = permisosUsuario; }
             }
-            else { resultado = false;/*throw new Exception("Contraseña incorrecta");*/ }
+            else { resultado = false; }
             return resultado;
         }
         public void Log_Out(bool opcion)

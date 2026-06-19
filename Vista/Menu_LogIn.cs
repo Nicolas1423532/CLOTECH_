@@ -26,6 +26,8 @@ namespace Vista
                 }
                 else
                 {
+                    textBox2.Text = null;
+                    textBox2.PlaceholderText = "Incorrecto!";
                     intentos++;
                     bool limite = bllUsuario.LimiteIntentosLogIn(intentos);
                     DesactivarControles(limite);
@@ -50,11 +52,6 @@ namespace Vista
         private void Form1_Load(object sender, EventArgs e)
         {
             bllUsuario = new BLL_Usuario();
-            //if (intentos == 3)
-            //{
-            //    MessageBox.Show("Has alcanzado el número máximo de intentos, la cuenta se bloqueara temporalmente");
-            //    Application.Exit();
-            //}
         }
     }
 }
