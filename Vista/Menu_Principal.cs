@@ -54,21 +54,14 @@ namespace Vista
         {
             foreach (Control c in controles)
             {
-                // 1. Si el control tiene un Tag asignado, procedemos a validar
                 if (c.Tag != null && !string.IsNullOrEmpty(c.Tag.ToString()))
                 {
                     string patenteRequerida = c.Tag.ToString();
-
-                    // 2. Buscamos mediante LINQ si alguna de las patentes del usuario coincide con el Tag
                     bool tieneAcceso = patentesUsuario.Any(p => p.Titulo == patenteRequerida);
-
-                    // 3. Aplicamos la seguridad (podés usar .Enabled o .Visible según prefieras)
                     c.Visible = tieneAcceso;
-                    // c.Visible = tieneAcceso; // Descomenta esta si preferís ocultar el botón por completo
                 }
 
                 //4.RECURSIVIDAD DE UI: Si el control es un contenedor(un Panel, GroupBox o TabControl),
-                // volvemos a llamar al método para revisar los botones que están adentro de él.
                 if (c.Controls.Count > 0)
                 {
                     ValidarPermisosUI(c.Controls, patentesUsuario);
